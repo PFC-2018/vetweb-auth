@@ -19,14 +19,16 @@
 		</div>
 		<div>
 			<h:outputLabel value="Perfil"/>
-			<h:selectManyListbox value="#{usuarioBean.perfis}">
+			<h:selectManyListbox value="#{usuarioBean.usuario.perfis}" converter="perfilConverter">
 				<f:selectItems value="#{beanPerfil.all}" var="perfil" 
-					itemValue="#{perfil.descricao}" itemLabel="#{perfil.descricao}">
+					itemValue="#{perfil}" itemLabel="#{perfil.descricao}">
 				</f:selectItems>
 			</h:selectManyListbox>
 		</div>
 		
 		<h:commandButton action="#{usuarioBean.save}" value="Salvar"/>
+		
+		<h:messages/>
 	
 	</h:form>
 </html>

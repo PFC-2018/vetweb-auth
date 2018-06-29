@@ -27,12 +27,12 @@ public class UsuarioBean {
 	
 	private Usuario usuario = new Usuario();
 	
-	private List<String> perfis = new ArrayList<>();
+//	private List<String> perfis = new ArrayList<>();
 	
 	@Transactional
 	public String save() {
-		perfis
-			.forEach(p -> usuario.getPerfis().add(perfilDAO.findByName(p)));
+//		perfis
+//			.forEach(p -> usuario.getPerfis().add(perfilDAO.findByName(p)));
 		usuarioDAO.save(usuario);
 		messageFlash();
 		context
@@ -55,12 +55,12 @@ public class UsuarioBean {
 		this.usuario = usuario;
 	}
 
-	public List<String> getPerfis() {
-		return perfis;
-	}
-
-	public void setPerfis(List<String> perfis) {
-		this.perfis = perfis;
-	}
+//	public List<String> getPerfis() {
+//		return perfis;
+//	}
+//
+//	public void setPerfis(List<String> perfis) {
+//		this.perfis = perfis;
+//	}
 
 }
