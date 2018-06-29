@@ -1,5 +1,7 @@
 package com.vetweb.auth.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -16,6 +18,12 @@ public class UsuarioDAO {
 	
 	public Usuario update(Usuario usuario) {
 		return entityManager.merge(usuario);
+	}
+	
+	public List<Usuario> all() {
+		return entityManager
+				.createQuery("SELECT DISTINCT(u) FROM Usuario u JOIN FETCH u.perfis p", Usuario.class)
+				.getResultList();
 	}
 	
 }

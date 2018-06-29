@@ -3,18 +3,15 @@ package com.vetweb.auth.bean;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.inject.Model;
 import javax.inject.Inject;
-import javax.inject.Named;
 import javax.transaction.Transactional;
 
 import com.vetweb.auth.dao.PerfilDAO;
 import com.vetweb.auth.dao.UsuarioDAO;
-import com.vetweb.auth.model.Perfil;
 import com.vetweb.auth.model.Usuario;
 
-@Named
-@RequestScoped
+@Model
 public class UsuarioBean {
 	
 	@Inject
@@ -28,11 +25,11 @@ public class UsuarioBean {
 	private List<String> perfis = new ArrayList<>();
 	
 	@Transactional
-	public void save() {
-		System.out.println("save()");
+	public String save() {
 		perfis
 			.forEach(p -> usuario.getPerfis().add(perfilDAO.findByName(p)));
 		usuarioDAO.save(usuario);
+		return "/usuarios/usuarios?faces-redirect=true";
 	}
 	
 	public Usuario getUsuario() {

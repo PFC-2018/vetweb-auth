@@ -25,7 +25,7 @@ public class PerfilBean {
 	@Transactional
 	public String save() {
 		perfilDAO.save(perfil);
-		return "/usuarios/cadastroUsuario?faces-redirect=true";
+		return "/perfis/perfis?faces-redirect=true";
 	}
 	
 	public List<Perfil> getAll() {
