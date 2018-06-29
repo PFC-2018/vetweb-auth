@@ -16,6 +16,11 @@
 				#{usuario.password}
 		</h:column>
 		<h:column>
+            <f:facet name="header">Foto</f:facet>
+			<img src="#{request.contextPath}/arquivo/#{usuario.caminhoFoto}"
+				height="30%" alt="#{usuario.caminhoFoto}" />            
+		</h:column>
+		<h:column>
             <f:facet name="header">Perfis</f:facet>
 				<ui:repeat var="perfil" value="#{usuario.perfis}">
 					#{perfil.descricao} <br/>
