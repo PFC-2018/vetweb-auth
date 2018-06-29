@@ -3,13 +3,13 @@ package com.vetweb.auth.model.converter;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
+import javax.faces.convert.FacesConverter;
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import com.vetweb.auth.dao.PerfilDAO;
 import com.vetweb.auth.model.Perfil;
 
-@Named
+@FacesConverter("perfilConverter")
 public class PerfilConverter implements Converter {
 
 	@Inject

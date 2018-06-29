@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.transaction.Transactional;
@@ -22,10 +24,23 @@ public class PerfilBean {
 	@Inject
 	private PerfilDAO perfilDAO;
 	
+	@Inject
+	private FacesContext context;
+	
 	@Transactional
 	public String save() {
 		perfilDAO.save(perfil);
+		messageFlash();
+		context
+			.addMessage(null, new FacesMessage("PERFIL INCLUÍDO COM SUCESSO	"));
 		return "/perfis/perfis?faces-redirect=true";
+	}
+
+	private void messageFlash() {
+		context
+			.getExternalContext()
+			.getFlash()
+			.setKeepMessages(true);
 	}
 	
 	public List<Perfil> getAll() {
