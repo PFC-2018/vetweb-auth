@@ -1,8 +1,6 @@
 package com.vetweb.auth.model;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -12,10 +10,15 @@ public class Perfil implements GrantedAuthority {
 	
 	private static final long serialVersionUID = 1L;
 	
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long perfilId;
-	
+	@Id 
 	private String descricao;
+
+	public Perfil() {
+	}
+	
+	public Perfil(String descricao) {
+		this.descricao = descricao;
+	}
 
 	@Override
 	public String getAuthority() {
@@ -28,14 +31,6 @@ public class Perfil implements GrantedAuthority {
 
 	public void setDescricao(String perfil) {
 		this.descricao = perfil;
-	}
-
-	public Long getPerfilId() {
-		return perfilId;
-	}
-
-	public void setPerfilId(Long perfilId) {
-		this.perfilId = perfilId;
 	}
 
 }
