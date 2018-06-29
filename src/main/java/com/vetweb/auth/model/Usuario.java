@@ -19,6 +19,8 @@ public class Usuario implements UserDetails {
 	@Id
 	private String username;
 	
+	private String caminhoFoto;
+	
 	private String password;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
@@ -86,6 +88,14 @@ public class Usuario implements UserDetails {
 
 	public void setPerfis(List<Perfil> perfis) {
 		this.perfis = perfis;
+	}
+
+	public String getCaminhoFoto() {
+		return caminhoFoto;
+	}
+
+	public void setCaminhoFoto(String caminhoFoto) {
+		this.caminhoFoto = caminhoFoto;
 	}
 
 	@Override

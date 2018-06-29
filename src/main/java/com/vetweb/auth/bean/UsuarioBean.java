@@ -1,15 +1,14 @@
 package com.vetweb.auth.bean;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.IOException;
 
 import javax.enterprise.inject.Model;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.servlet.http.Part;
 import javax.transaction.Transactional;
 
-import com.vetweb.auth.dao.PerfilDAO;
 import com.vetweb.auth.dao.UsuarioDAO;
 import com.vetweb.auth.model.Usuario;
 
@@ -19,22 +18,26 @@ public class UsuarioBean {
 	@Inject
 	private UsuarioDAO usuarioDAO;
 	
-	@Inject
-	private PerfilDAO perfilDAO;
+	private Part fotoUsuario;
 	
 	@Inject
 	private FacesContext context;
 	
 	private Usuario usuario = new Usuario();
 	
-//	private List<String> perfis = new ArrayList<>();
 	
 	@Transactional
 	public String save() {
-//		perfis
-//			.forEach(p -> usuario.getPerfis().add(perfilDAO.findByName(p)));
-		usuarioDAO.save(usuario);
 		messageFlash();
+		String caminhoFoto = "/tmp/" + fotoUsuario.getSubmittedFileName();
+		try {
+			fotoUsuario.write(caminhoFoto);
+		} catch (IOException e) {
+			context
+				.addMessage(null, new FacesMessage("ERRO AO SALVAR O ARQUIVO COM A FOTO DO USUÁRIO"));
+		}
+		usuario.setCaminhoFoto(caminhoFoto);
+		usuarioDAO.save(usuario);
 		context
 			.addMessage(null, new FacesMessage("USUÁRIO INCLUÍDO COM SUCESSO	"));
 		return "/usuarios/usuarios?faces-redirect=true";
@@ -55,12 +58,12 @@ public class UsuarioBean {
 		this.usuario = usuario;
 	}
 
-//	public List<String> getPerfis() {
-//		return perfis;
-//	}
-//
-//	public void setPerfis(List<String> perfis) {
-//		this.perfis = perfis;
-//	}
+	public Part getFotoUsuario() {
+		return fotoUsuario;
+	}
+
+	public void setFotoUsuario(Part fotoUsuario) {
+		this.fotoUsuario = fotoUsuario;
+	}
 
 }

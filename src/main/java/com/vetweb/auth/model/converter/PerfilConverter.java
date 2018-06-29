@@ -5,13 +5,10 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-import com.vetweb.auth.dao.PerfilDAO;
 import com.vetweb.auth.model.Perfil;
 
 @FacesConverter("perfilConverter")
 public class PerfilConverter implements Converter {
-
-	private PerfilDAO perfilDAO = new PerfilDAO();
 	
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
