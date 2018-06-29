@@ -19,9 +19,9 @@
 		</div>
 		<div>
 			<h:outputLabel value="Perfil"/>
-			<h:selectManyListbox value="#{usuarioBean.usuario.perfis}" converter="#{perfilConverter}">
+			<h:selectManyListbox value="#{usuarioBean.perfis}">
 				<f:selectItems value="#{beanPerfil.all}" var="perfil" 
-					itemValue="#{perfil}" itemLabel="#{perfil.descricao}">
+					itemValue="#{perfil.descricao}" itemLabel="#{perfil.descricao}">
 				</f:selectItems>
 			</h:selectManyListbox>
 		</div>

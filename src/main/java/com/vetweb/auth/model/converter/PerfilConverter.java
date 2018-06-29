@@ -25,7 +25,8 @@ public class PerfilConverter implements Converter {
 	@Override
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
 		if (value != null) {
-			Perfil perfil = (Perfil)value;
+			String name = (String)value;
+			Perfil perfil = perfilDAO.findByName(name);
 			return perfil.getDescricao();
 		}
 		return null;

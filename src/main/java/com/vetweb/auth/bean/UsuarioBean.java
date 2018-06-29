@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.transaction.Transactional;
 
+import com.vetweb.auth.dao.PerfilDAO;
 import com.vetweb.auth.dao.UsuarioDAO;
 import com.vetweb.auth.model.Perfil;
 import com.vetweb.auth.model.Usuario;
@@ -19,13 +20,18 @@ public class UsuarioBean {
 	@Inject
 	private UsuarioDAO usuarioDAO;
 	
+	@Inject
+	private PerfilDAO perfilDAO;
+	
 	private Usuario usuario = new Usuario();
 	
-	private List<Perfil> perfis = new ArrayList<>();
+	private List<String> perfis = new ArrayList<>();
 	
 	@Transactional
 	public void save() {
 		System.out.println("save()");
+		perfis
+			.forEach(p -> usuario.getPerfis().add(perfilDAO.findByName(p)));
 		usuarioDAO.save(usuario);
 	}
 	
@@ -37,11 +43,11 @@ public class UsuarioBean {
 		this.usuario = usuario;
 	}
 
-	public List<Perfil> getPerfis() {
+	public List<String> getPerfis() {
 		return perfis;
 	}
 
-	public void setPerfis(List<Perfil> perfis) {
+	public void setPerfis(List<String> perfis) {
 		this.perfis = perfis;
 	}
 
