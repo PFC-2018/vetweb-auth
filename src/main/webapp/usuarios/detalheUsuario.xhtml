@@ -12,5 +12,11 @@
 </f:metadata>
 
 	<h:outputText value="#{usuarioDetalheBean.usuario.username}"	/>	
+	
+	<ui:repeat value="#{usuarioDetalheBean.usuario.perfis}" var="perfil">
+	
+		<h:outputText value="#{perfil.descricao}"	/>	
+	
+	</ui:repeat>
 
 </html>

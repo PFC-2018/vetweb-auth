@@ -23,7 +23,7 @@ public class Usuario implements UserDetails {
 	
 	private String password;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.LAZY)
 	private List<Perfil> perfis = new ArrayList<>();
 
 	public Usuario() {

@@ -2,14 +2,17 @@ package com.vetweb.auth.dao;
 
 import java.util.List;
 
+import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
 
 import com.vetweb.auth.model.Usuario;
 
+@Stateful
 public class UsuarioDAO {
 
-	@PersistenceContext
+	@PersistenceContext(type = PersistenceContextType.EXTENDED)
 	private EntityManager entityManager;
 	
 	public void save(Usuario usuario) {
