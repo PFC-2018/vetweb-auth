@@ -9,7 +9,7 @@
 	<h:dataTable var="usuario" value="#{usuarioListBean.usuarios}">
 		<h:column>
             <f:facet name="header">Nome</f:facet>
-				#{usuario.username}
+				<a href="#{request.contextPath}/usuarios/detalheUsuario.xhtml?id=#{usuario.username}">#{usuario.username}</a>
 		</h:column>
 		<h:column>
             <f:facet name="header">Senha</f:facet>

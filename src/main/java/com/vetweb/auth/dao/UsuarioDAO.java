@@ -25,5 +25,9 @@ public class UsuarioDAO {
 				.createQuery("SELECT DISTINCT(u) FROM Usuario u JOIN FETCH u.perfis p", Usuario.class)
 				.getResultList();
 	}
+
+	public Usuario findById(String id) {
+		return entityManager.find(Usuario.class, id);
+	}
 	
 }
