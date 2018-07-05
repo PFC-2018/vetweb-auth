@@ -5,18 +5,32 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
-
-<f:metadata>
-	<f:viewParam value="#{usuarioDetalheBean.id}" name="id"/>
-	<f:viewAction action="#{usuarioDetalheBean.findById()}" />
-</f:metadata>
-
-	<h:outputText value="#{usuarioDetalheBean.usuario.username}"	/>	
 	
-	<ui:repeat value="#{usuarioDetalheBean.usuario.perfis}" var="perfil">
+	<f:metadata>
+		<f:viewParam value="#{usuarioDetalheBean.id}" name="id"/>
+		<f:viewAction action="#{usuarioDetalheBean.findById()}" />
+	</f:metadata>
+		
+	<ui:composition 
+		xmlns:p="http://primefaces.org/ui"
+		template="/template/layout.xhtml">
+		
+		<ui:define name="content">
+			<p:layoutUnit position="center">		
+				<h:outputText value="#{usuarioDetalheBean.usuario.username}"	/>
+					
+				<ul class="demo-list-item mdl-list">
+				<ui:repeat value="#{usuarioDetalheBean.usuario.perfis}" var="perfil">
+					<li class="mdl-list__item">
+						<span class="mdl-list__item-primary-content">
+							<h:outputText value="#{perfil.descricao}"	/>
+						</span>
+					</li>
+				</ui:repeat>
+				</ul>		
+		    </p:layoutUnit>
+	    </ui:define>
+	    	
+	</ui:composition>
 	
-		<h:outputText value="#{perfil.descricao}"	/>	
-	
-	</ui:repeat>
-
 </html>

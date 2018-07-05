@@ -6,28 +6,42 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-	<h:dataTable var="usuario" value="#{usuarioListBean.usuarios}">
-		<h:column>
-            <f:facet name="header">Nome</f:facet>
-				<a href="#{request.contextPath}/usuarios/detalheUsuario.xhtml?id=#{usuario.username}">#{usuario.username}</a>
-		</h:column>
-		<h:column>
-            <f:facet name="header">Senha</f:facet>
-				#{usuario.password}
-		</h:column>
-		<h:column>
-            <f:facet name="header">Foto</f:facet>
-			<img src="#{request.contextPath}/arquivo/#{usuario.caminhoFoto}"
-				height="30%" alt="#{usuario.caminhoFoto}" />            
-		</h:column>
-		<h:column>
-            <f:facet name="header">Perfis</f:facet>
-				<ui:repeat var="perfil" value="#{usuario.perfis}">
-					#{perfil.descricao} <br/>
-				</ui:repeat>
-		</h:column>
-	</h:dataTable>
-
-	<h:messages/>
-
+	<ui:composition 
+		xmlns:p="http://primefaces.org/ui"
+		template="/template/layout.xhtml">
+		
+		<ui:define name="content">
+		
+		    <p:layoutUnit position="center">
+		    
+				<h:dataTable var="usuario" value="#{usuarioListBean.usuarios}">
+					<h:column>
+			            <f:facet name="header">Nome</f:facet>
+							<a href="#{request.contextPath}/usuarios/detalheUsuario.xhtml?id=#{usuario.username}">#{usuario.username}</a>
+					</h:column>
+					<h:column>
+			            <f:facet name="header">Senha</f:facet>
+							#{usuario.password}
+					</h:column>
+					<h:column>
+			            <f:facet name="header">Foto</f:facet>
+						<img src="#{request.contextPath}/arquivo/#{usuario.caminhoFoto}"
+							height="30%" alt="#{usuario.caminhoFoto}" />            
+					</h:column>
+					<h:column>
+			            <f:facet name="header">Perfis</f:facet>
+							<ui:repeat var="perfil" value="#{usuario.perfis}">
+								#{perfil.descricao} <br/>
+							</ui:repeat>
+					</h:column>
+				</h:dataTable>
+			
+				<h:messages/>
+						        
+		    </p:layoutUnit>
+		    
+	    </ui:define>
+	    	
+	</ui:composition>
+	
 </html>
