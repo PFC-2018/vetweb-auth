@@ -25,7 +25,6 @@ public class UsuarioBean {
 	
 	private Usuario usuario = new Usuario();
 	
-	
 	@Transactional
 	public String save() {
 		messageFlash();

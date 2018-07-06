@@ -8,10 +8,14 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
+@XmlRootElement
 public class Usuario implements UserDetails {
 	
 	private static final long serialVersionUID = 1L;
@@ -23,7 +27,11 @@ public class Usuario implements UserDetails {
 	
 	private String password;
 	
+	private String email;
+	
 	@ManyToMany(fetch = FetchType.LAZY)
+	@XmlElement(name = "perfil")
+	@XmlElementWrapper(name = "perfis")
 	private List<Perfil> perfis = new ArrayList<>();
 
 	public Usuario() {
@@ -96,6 +104,14 @@ public class Usuario implements UserDetails {
 
 	public void setCaminhoFoto(String caminhoFoto) {
 		this.caminhoFoto = caminhoFoto;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	@Override
