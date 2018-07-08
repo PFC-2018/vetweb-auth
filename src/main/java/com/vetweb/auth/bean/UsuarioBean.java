@@ -11,6 +11,7 @@ import javax.transaction.Transactional;
 
 import com.vetweb.auth.dao.UsuarioDAO;
 import com.vetweb.auth.model.Usuario;
+import com.vetweb.auth.service.EmailSender;
 
 @Model
 public class UsuarioBean {
@@ -22,6 +23,9 @@ public class UsuarioBean {
 	
 	@Inject
 	private FacesContext context;
+	
+	@Inject
+	private EmailSender emailSender;
 	
 	private Usuario usuario = new Usuario();
 	
@@ -39,6 +43,8 @@ public class UsuarioBean {
 		usuarioDAO.save(usuario);
 		context
 			.addMessage(null, new FacesMessage("USUÁRIO INCLUÍDO COM SUCESSO	"));
+		emailSender.send("springbootalura@gmail.com", usuario.getEmail(), "INCLUSÃO DE USUÁRIO NA VETWEB",
+				"SEU USUÁRIO PARA ACESSO A VETWEB FOI CRIADO, SEU USERNAME É " + usuario.getUsername() + " E SEU PASSWORD É " + usuario.getPassword());
 		return "/usuarios/usuarios?faces-redirect=true";
 	}
 

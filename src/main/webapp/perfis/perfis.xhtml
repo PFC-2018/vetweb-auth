@@ -13,12 +13,11 @@
 		<ui:define name="content">
 		
 		    <p:layoutUnit position="center">
-				<h:dataTable var="perfil" value="#{perfilListBean.perfis}">
-					<h:column>
-			            <f:facet name="header">Descrição</f:facet>
-							#{perfil.descricao}
-					</h:column>
-				</h:dataTable>
+				<p:dataTable var="perfil" value="#{perfilListBean.perfis}">
+					<p:column headerText="Descrição">
+						<h:outputText value="#{perfil.descricao}"/>
+					</p:column>
+				</p:dataTable>
 				
 				<h:messages/>		        
 		    </p:layoutUnit>

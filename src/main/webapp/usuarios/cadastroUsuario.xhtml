@@ -16,37 +16,40 @@
 		
 		    <p:layoutUnit position="center">
 				<h:form enctype="multipart/form-data">
-				
-					<div>
-						<h:outputLabel value="Foto"/>
-						<h:inputFile value="#{usuarioBean.fotoUsuario}"/>
-					</div>
+					<p:fieldset legend="Cadastro Usuário" toggleable="true" toggleSpeed="500">
 					
-					<div>
-						<h:outputLabel value="Nome"/>
-						<h:inputText value="#{usuarioBean.usuario.username}" pt:placeholder="Username"/>
-					</div>
+						<h:panelGrid columns="2" cellpadding="5">
+							<h:outputLabel value="Foto"/>
+							<h:inputFile value="#{usuarioBean.fotoUsuario}"/>
+						</h:panelGrid>
+						
+						<h:panelGrid columns="2" cellpadding="5">
+							<h:outputLabel value="Nome"/>
+							<h:inputText value="#{usuarioBean.usuario.username}" pt:placeholder="Username"/>
+						</h:panelGrid>
+						
+						<h:panelGrid columns="2" cellpadding="5">
+							<h:outputLabel value="Email"/>
+							<h:inputText value="#{usuarioBean.usuario.email}" pt:placeholder="email@email"/>
+						</h:panelGrid>
+						
+						<h:panelGrid columns="2" cellpadding="5">
+							<h:outputLabel value="Senha"/>
+							<h:inputSecret value="#{usuarioBean.usuario.password}" pt:placeholder="Password"/>
+						</h:panelGrid>
+						
+						<h:panelGrid columns="2" cellpadding="5">
+							<h:outputLabel value="Perfil"/>
+							<h:selectManyListbox value="#{usuarioBean.usuario.perfis}" converter="perfilConverter">
+								<f:selectItems value="#{beanPerfil.all}" var="perfil" 
+									itemValue="#{perfil}" itemLabel="#{perfil.descricao}">
+								</f:selectItems>
+							</h:selectManyListbox>
+						</h:panelGrid>
+						
+						<h:commandButton action="#{usuarioBean.save}" value="Salvar"/>
 					
-					<div>
-						<h:outputLabel value="Email"/>
-						<h:inputText value="#{usuarioBean.usuario.email}" pt:placeholder="email@email"/>
-					</div>
-					
-					<div>
-						<h:outputLabel value="Senha"/>
-						<h:inputSecret value="#{usuarioBean.usuario.password}" pt:placeholder="Password"/>
-					</div>
-					<div>
-						<h:outputLabel value="Perfil"/>
-						<h:selectManyListbox value="#{usuarioBean.usuario.perfis}" converter="perfilConverter">
-							<f:selectItems value="#{beanPerfil.all}" var="perfil" 
-								itemValue="#{perfil}" itemLabel="#{perfil.descricao}">
-							</f:selectItems>
-						</h:selectManyListbox>
-					</div>
-					
-					<h:commandButton action="#{usuarioBean.save}" value="Salvar"/>
-					
+					</p:fieldset>
 					<h:messages/>
 				
 				</h:form>		    		        

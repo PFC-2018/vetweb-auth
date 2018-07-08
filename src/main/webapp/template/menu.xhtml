@@ -11,14 +11,15 @@
 		
 	    <p:layoutUnit position="west" size="200" header="Menu" resizable="true" closable="true" collapsible="true">
 			<h:form>  
-			     <p:menu>
+			     <p:menu toggleable="true">
 					<p:submenu label="Perfis">
-	                	<p:menuitem value="Perfis" url="/perfis/perfis.xhtml" />
-	                	<p:menuitem value="Cadastro Perfil" url="/perfis/cadastroPerfil.xhtml" />
+	                	<p:menuitem value="Perfis" url="/perfis/perfis.xhtml" icon="ui-icon-folder-open"/>
+	                	<p:menuitem value="Permissões" url="/perfis/perfis.xhtml" icon="ui-icon-locked"/>
+	                	<p:menuitem value="Cadastro Perfil" url="/perfis/cadastroPerfil.xhtml" icon="ui-icon-disk"/>
 			    	</p:submenu>
 					<p:submenu label="Usuarios">
-	                	<p:menuitem value="Usuarios" url="/usuarios/usuarios.xhtml" />
-	                	<p:menuitem value="Cadastro Usuario" url="/usuarios/cadastroUsuario.xhtml" />
+	                	<p:menuitem value="Usuarios" url="/usuarios/usuarios.xhtml" icon="ui-icon-folder-open"/>
+	                	<p:menuitem value="Cadastro Usuario" url="/usuarios/cadastroUsuario.xhtml" icon="ui-icon-disk"/>
 			    	</p:submenu>
 			    </p:menu>
 			</h:form>

@@ -11,15 +11,17 @@
 		template="/template/layout.xhtml">
 		
 		<ui:define name="content">
+		
 			<p:layoutUnit position="center">		
 				<h:form>
 				
-					<div>
-						<h:outputLabel value="Descricao"/>
-						<h:inputText value="#{beanPerfil.perfil.descricao}"/>
-					</div>
-					
-					<h:commandButton action="#{beanPerfil.save}" value="Salvar"/>
+				    <p:fieldset legend="Cadastro Perfil" toggleable="true" toggleSpeed="500">
+				        <h:panelGrid columns="2" cellpadding="5">
+								<h:outputLabel value="Descrição"/>
+								<h:inputText value="#{beanPerfil.perfil.descricao}"/>
+								<h:commandButton action="#{beanPerfil.save}" value="Salvar"/>
+				        </h:panelGrid>
+				    </p:fieldset>
 					
 				</h:form>		
 		    </p:layoutUnit>
