@@ -2,16 +2,19 @@ package com.vetweb.auth.bean;
 
 import java.io.IOException;
 
+import javax.annotation.Resource;
 import javax.enterprise.inject.Model;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.jms.Destination;
+import javax.jms.JMSContext;
+import javax.jms.JMSProducer;
 import javax.servlet.http.Part;
 import javax.transaction.Transactional;
 
 import com.vetweb.auth.dao.UsuarioDAO;
 import com.vetweb.auth.model.Usuario;
-import com.vetweb.auth.service.EmailSender;
 
 @Model
 public class UsuarioBean {
@@ -25,13 +28,17 @@ public class UsuarioBean {
 	private FacesContext context;
 	
 	@Inject
-	private EmailSender emailSender;
+	private JMSContext jmsContext;
+	
+	@Resource(name = "java:/jms/topics/EmailSender")
+	private Destination destination;
 	
 	private Usuario usuario = new Usuario();
 	
 	@Transactional
 	public String save() {
 		messageFlash();
+		JMSProducer jmsProducer = jmsContext.createProducer();
 		String caminhoFoto = "/tmp/" + fotoUsuario.getSubmittedFileName();
 		try {
 			fotoUsuario.write(caminhoFoto);
@@ -41,10 +48,9 @@ public class UsuarioBean {
 		}
 		usuario.setCaminhoFoto(caminhoFoto);
 		usuarioDAO.save(usuario);
+		jmsProducer.send(destination, usuario.getEmail());
 		context
 			.addMessage(null, new FacesMessage("USUÁRIO INCLUÍDO COM SUCESSO	"));
-		emailSender.send("springbootalura@gmail.com", usuario.getEmail(), "INCLUSÃO DE USUÁRIO NA VETWEB",
-				"SEU USUÁRIO PARA ACESSO A VETWEB FOI CRIADO, SEU USERNAME É " + usuario.getUsername() + " E SEU PASSWORD É " + usuario.getPassword());
 		return "/usuarios/usuarios?faces-redirect=true";
 	}
 
