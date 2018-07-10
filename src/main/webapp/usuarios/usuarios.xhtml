@@ -13,7 +13,9 @@
 		<ui:define name="content">
 		
 		    <p:layoutUnit position="center">
-		    
+		    	
+		    	<h:outputText value="#{currentUser.get().username}"/>
+		    	
 				<p:dataTable var="usuario" value="#{usuarioListBean.usuarios}">
 					<p:column headerText="Nome">
 						<a href="#{request.contextPath}/usuarios/detalheUsuario.xhtml?id=#{usuario.username}">#{usuario.username}</a>

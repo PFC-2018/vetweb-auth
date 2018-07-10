@@ -10,7 +10,9 @@
 		xmlns:p="http://primefaces.org/ui">
 		
 		<p:layoutUnit position="north" size="100" header="Vetweb Auth" resizable="true" closable="true" collapsible="true">
-			
+			<h:form>
+				<h:commandLink action="#{currentUser.logout}" value="Logout"/>
+			</h:form>
 		</p:layoutUnit>
 		
 	</ui:composition>
