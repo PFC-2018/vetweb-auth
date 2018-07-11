@@ -39,7 +39,7 @@ public class UsuarioBean {
 	public String save() {
 		messageFlash();
 		JMSProducer jmsProducer = jmsContext.createProducer();
-		String caminhoFoto = "/tmp/" + fotoUsuario.getSubmittedFileName();
+		String caminhoFoto = System.getProperty("jboss.home.dir") + "/vetwebFiles/imagens/usuarios/" + fotoUsuario.getSubmittedFileName();
 		try {
 			fotoUsuario.write(caminhoFoto);
 		} catch (IOException e) {

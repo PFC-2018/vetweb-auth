@@ -26,8 +26,8 @@ public class ArquivosServlet extends HttpServlet {
 
 	@Override
 	public void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		String nomeArquivo = req.getRequestURI().split("/arquivo")[1];
-		Path caminhoCompleto = Paths.get(nomeArquivo);
+		String nomeArquivo = req.getRequestURI().split("/arquivo/")[1];
+		Path caminhoCompleto = Paths.get(nomeArquivo.replaceAll("%20", " "));
 		FileNameMap fileNameMap = URLConnection.getFileNameMap();
 		String tipoArquivo = fileNameMap.getContentTypeFor("file:" + caminhoCompleto);
 		res.reset();
