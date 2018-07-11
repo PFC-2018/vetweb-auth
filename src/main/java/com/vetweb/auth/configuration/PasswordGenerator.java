@@ -7,7 +7,7 @@ import org.jboss.security.Base64Encoder;
 public class PasswordGenerator {
 	
 	public static void main(String[] args) {
-		System.out.println(new PasswordGenerator().genPassword("Callable"));
+		System.out.println(new PasswordGenerator().genPassword("vetweb"));
 	}
 	
 	public String genPassword(String password) {

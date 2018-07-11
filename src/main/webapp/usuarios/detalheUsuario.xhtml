@@ -16,18 +16,23 @@
 		template="/template/layout.xhtml">
 		
 		<ui:define name="content">
-			<p:layoutUnit position="center">		
-				<h:outputText value="#{usuarioDetalheBean.usuario.username}"	/>
-					
-				<ul class="demo-list-item mdl-list">
-				<ui:repeat value="#{usuarioDetalheBean.usuario.perfis}" var="perfil">
-					<li class="mdl-list__item">
-						<span class="mdl-list__item-primary-content">
-							<h:outputText value="#{perfil.descricao}"	/>
-						</span>
-					</li>
-				</ui:repeat>
-				</ul>		
+			<p:layoutUnit position="center">
+				<p:panelGrid columns="2">
+				    <f:facet name="header">
+						<img src="#{request.contextPath}/arquivo/#{usuarioDetalheBean.usuario.username}"
+							height="30%" alt="#{usuarioDetalheBean.usuario.username}" />
+				    </f:facet>
+				 
+				    <h:outputText value="Username:" />
+				    <h:outputText value="#{usuarioDetalheBean.usuario.username}" />
+				 
+				    <h:outputText value="Email:" />
+				    <h:outputText value="#{usuarioDetalheBean.usuario.email}" />
+				    
+				    <h:outputText value="Perfis:" />
+				    <h:outputText value="#{usuarioDetalheBean.usuario.perfis}" />				    
+				    
+				</p:panelGrid>					
 		    </p:layoutUnit>
 	    </ui:define>
 	    	

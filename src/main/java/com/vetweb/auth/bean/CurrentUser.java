@@ -33,7 +33,7 @@ public class CurrentUser {
 	public String logout() {
 		request.getSession().invalidate();
 		System.out.println("Saindo do sistema");
-		return "/usuarios/usuarios.xhtml?faces-redirect=true";
+		return "/index.xhtml?faces-redirect=true";
 	}
 	
 	public Usuario get() {
