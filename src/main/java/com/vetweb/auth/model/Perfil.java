@@ -1,7 +1,10 @@
 package com.vetweb.auth.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 import org.springframework.security.core.GrantedAuthority;
 
@@ -12,6 +15,9 @@ public class Perfil implements GrantedAuthority {
 	
 	@Id
 	private String descricao;
+	
+	@ManyToMany
+	private List<Permissao> permissoes;
 
 	public Perfil() {
 	}
@@ -31,6 +37,14 @@ public class Perfil implements GrantedAuthority {
 
 	public void setDescricao(String perfil) {
 		this.descricao = perfil;
+	}
+
+	public List<Permissao> getPermissoes() {
+		return permissoes;
+	}
+
+	public void setPermissoes(List<Permissao> permissoes) {
+		this.permissoes = permissoes;
 	}
 
 	@Override

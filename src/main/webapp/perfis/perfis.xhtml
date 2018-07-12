@@ -18,6 +18,14 @@
 					<p:column headerText="Descrição">
 						<h:outputText value="#{perfil.descricao}"/>
 					</p:column>
+					<p:column headerText="Permissões">
+						<h:form>
+							<p:menu toggleable="false">
+								<p:menuitem value="Acessos #{perfil.descricao}" 
+									url="/perfis/permissoes.xhtml?id=#{perfil.descricao}" icon="ui-icon-locked" />
+							</p:menu>
+						</h:form>					
+					</p:column>
 				</p:dataTable>
 				
 				<h:messages/>		        

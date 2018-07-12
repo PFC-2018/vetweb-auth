@@ -6,6 +6,11 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
+	<f:metadata>
+		<f:viewParam value="#{perfilDetalheBean.id}" name="id"/>
+		<f:viewAction action="#{perfilDetalheBean.findById()}" />
+	</f:metadata>
+
 	<ui:composition 
 		xmlns:p="http://primefaces.org/ui"
 		template="/template/layout.xhtml">
@@ -14,24 +19,13 @@
 		
 		    <p:layoutUnit position="center">
 		    
-		    	<p:fieldset legend="Perfis de Usuário" toggleable="true" toggleSpeed="500">
-				    <p:pickList id="listPerfil" value="#{beanPerfil.dualListPerfil}" var="perfil" effect="bounce"
+		    	<p:fieldset legend="Permissões #{perfilDetalheBean.perfil.descricao}" toggleable="true" toggleSpeed="500">
+				    <p:pickList id="listPerfil" value="#{permissoesBean.dualListPermissao}" var="perfil" effect="bounce"
 				                itemValue="#{perfil}" itemLabel="#{perfil}" showCheckbox="true" responsive="true"
 				                filterMatchMode="contains">
 				                
 					    <f:facet name="sourceCaption">Disponíveis</f:facet>
-					    <f:facet name="targetCaption">Selecionados</f:facet>
-	    			                
-			    	</p:pickList>
-		    	</p:fieldset>
-		    	
-				<p:fieldset legend="Perfis de Administrador" toggleable="true" toggleSpeed="500">
-				    <p:pickList id="listUsuario" value="#{beanPerfil.dualListPerfil}" var="perfil" effect="bounce"
-				                itemValue="#{perfil}" itemLabel="#{perfil}" showCheckbox="true" responsive="true"
-				                filterMatchMode="contains">
-				                
-					    <f:facet name="sourceCaption">Disponíveis</f:facet>
-					    <f:facet name="targetCaption">Selecionados</f:facet>
+					    <f:facet name="targetCaption">Atribuídas</f:facet>
 	    			                
 			    	</p:pickList>
 		    	</p:fieldset>
