@@ -1,7 +1,8 @@
 var endpoint = new WebSocket("ws://localhost:8080/vetweb/endpoint/auth");
 
 endpoint.onopen = function () {
-	endpoint.send("MESSAGE");
+	console.log('CONEXÃO ABERTA JUNTO AO SERVIDOR P/ COMUNICAÇÃO');
+//	endpoint.send("MESSAGE");
 }
 
 endpoint.onmessage = function (message) {
@@ -10,9 +11,9 @@ endpoint.onmessage = function (message) {
 }
 
 endpoint.onerror = function (error) {
-	alert(error);
+	console.log('ERRO NA COMUNICAÇÃO COM O SERVIDOR: ' + error);
 }
 
 endpoint.onclose = function (close) {
-	alert(close.code);
+	console.log('CONEXÃO COM O SERVIDOR FINALIZADA: ' + close.code);
 }

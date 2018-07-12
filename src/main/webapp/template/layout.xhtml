@@ -24,8 +24,17 @@
 	        </ui:insert>
 	        		
 		</p:layout>
+
+        <ui:insert name="script">
+	        <script>
+	        
+		        console.log('Script default');
+	        
+	        </script>
+        </ui:insert>
+		
 		<h:outputScript library="mdl" name="material.js"></h:outputScript>
-		<h:outputScript library="js" name="websocket.js"></h:outputScript>
+		
     </h:body>
     
 </html>
