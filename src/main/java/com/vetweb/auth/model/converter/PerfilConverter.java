@@ -13,7 +13,6 @@ public class PerfilConverter implements Converter {
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
 		if(value == null || value.trim().isEmpty()) return null;
-		System.out.println("getAsObject" + value);
 		Perfil perfil = new Perfil();
 		perfil.setDescricao(value);
 		return perfil;
@@ -22,7 +21,6 @@ public class PerfilConverter implements Converter {
 	@Override
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
 		if(value == null) return null;
-		System.out.println("getAsString" + value);
 		Perfil perfil = (Perfil)value;
 		return perfil.getDescricao();
 	}
