@@ -19,12 +19,7 @@
 						<h:outputText value="#{perfil.descricao}"/>
 					</p:column>
 					<p:column headerText="Permissões">
-						<h:form>
-							<p:menu toggleable="false">
-								<p:menuitem value="Acessos #{perfil.descricao}" 
-									url="/perfis/permissoes.xhtml?id=#{perfil.descricao}" icon="ui-icon-locked" />
-							</p:menu>
-						</h:form>					
+						<h:button value="Acessos #{perfil.descricao}" outcome="/perfis/permissoes.xhtml?id=#{perfil.descricao}"></h:button>
 					</p:column>
 				</p:dataTable>
 				

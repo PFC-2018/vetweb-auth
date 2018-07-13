@@ -1,6 +1,7 @@
 package com.vetweb.auth.bean;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.enterprise.inject.Model;
@@ -12,7 +13,7 @@ import com.vetweb.auth.model.Permissao;
 @Model
 public class PermissoesBean {
 	
-	private DualListModel<Permissao> dualListPermissao = new DualListModel<>();
+	private DualListModel<Permissao> dualListPermissao = new DualListModel<>(Arrays.asList(new Permissao("Teste 01")), Arrays.asList(new Permissao("Teste 02")));
 	
 	private List<Permissao> disponiveis = new ArrayList<>();
 	

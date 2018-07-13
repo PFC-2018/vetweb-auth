@@ -9,6 +9,13 @@ import javax.persistence.Id;
 public class Permissao implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
+	
+	public Permissao(String url) {
+		this.url = url;
+	}
+	
+	public Permissao() {
+	}
 
 	@Id
 	private Long id;
@@ -31,6 +38,9 @@ public class Permissao implements Serializable {
 		this.url = url;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return url + " ";
+	}
 
 }
