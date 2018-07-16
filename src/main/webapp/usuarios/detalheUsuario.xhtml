@@ -23,14 +23,15 @@
 							height="30%" alt="#{usuarioDetalheBean.usuario.username}" />
 				    </f:facet>
 				 
-				    <h:outputText value="Username:" />
+				    <h:outputText value="Username" style="font-weight: bold;"/>
 				    <h:outputText value="#{usuarioDetalheBean.usuario.username}" />
 				 
-				    <h:outputText value="Email:" />
+				    <h:outputText value="Email" style="font-weight: bold;"/>
 				    <h:outputText value="#{usuarioDetalheBean.usuario.email}" />
+
+				    <h:outputText value="Perfis" style="font-weight: bold;"/>
+				    <h:outputText value="#{usuarioDetalheBean.usuario.perfis}" />
 				    
-				    <h:outputText value="Perfis:" />
-				    <h:outputText value="#{usuarioDetalheBean.usuario.perfis}" />				    
 				    
 				</p:panelGrid>					
 		    </p:layoutUnit>

@@ -19,7 +19,12 @@
 						<h:outputText value="#{perfil.descricao}"/>
 					</p:column>
 					<p:column headerText="Permissões">
-						<h:button value="Acessos #{perfil.descricao}" outcome="/perfis/permissoes.xhtml?id=#{perfil.descricao}"></h:button>
+						<ul>
+						<ui:repeat var="permissao" value="#{perfil.permissoes.toArray()}">
+							<li>#{permissao.url}</li>
+						</ui:repeat>
+						</ul>
+						<h:button value="Gerenciar" outcome="/perfis/permissoes.xhtml?id=#{perfil.descricao}"></h:button>
 					</p:column>
 				</p:dataTable>
 				

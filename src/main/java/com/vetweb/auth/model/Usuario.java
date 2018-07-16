@@ -1,7 +1,6 @@
 package com.vetweb.auth.model;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -12,12 +11,11 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import org.springframework.security.core.userdetails.UserDetails;
-
 @Entity
 @XmlRootElement
-public class Usuario implements UserDetails {
+public class Usuario {
 	
+	@SuppressWarnings("unused")
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -43,16 +41,6 @@ public class Usuario implements UserDetails {
 		this.perfis = perfis;
 	}
 
-	@Override
-	public Collection<Perfil> getAuthorities() {
-		return perfis;
-	}
-	
-	public void setAuthorities(List<Perfil> perfis) {
-		this.perfis = perfis;
-	}
-
-	@Override
 	public String getPassword() {
 		return password;
 	}
@@ -61,33 +49,12 @@ public class Usuario implements UserDetails {
 		this.password = password;
 	}
 
-	@Override
 	public String getUsername() {
 		return username;
 	}
 	
 	public void setUsername(String username) {
 		this.username = username;
-	}
-
-	@Override
-	public boolean isAccountNonExpired() {
-		return true;
-	}
-
-	@Override
-	public boolean isAccountNonLocked() {
-		return true;
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return true;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		return true;
 	}
 
 	public List<Perfil> getPerfis() {

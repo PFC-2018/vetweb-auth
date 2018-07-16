@@ -2,18 +2,33 @@ package com.vetweb.auth.dao;
 
 import java.util.List;
 
+import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
 
 import com.vetweb.auth.model.Perfil;
+import com.vetweb.auth.model.Permissao;
 
+@Stateful
 public class PerfilDAO {
 	
-	@PersistenceContext
+	@PersistenceContext(type = PersistenceContextType.EXTENDED)
 	private EntityManager entityManager;
 	
 	public void save(Perfil perfil) {
 		entityManager.persist(perfil);
+	}
+	
+	public void savePermissao(Permissao permissao) {
+		if (permissao.getId() == null && !allPermissoes().contains(permissao))
+				entityManager.persist(permissao);
+	}
+
+	private List<Permissao> allPermissoes() {
+		return entityManager
+				.createQuery("SELECT p FROM Permissao p", Permissao.class)
+				.getResultList();
 	}
 	
 	public Perfil update(Perfil perfil) {
@@ -29,6 +44,13 @@ public class PerfilDAO {
 	public Perfil findByName(String descricao) {
 		return entityManager
 				.find(Perfil.class, descricao);
+	}
+
+	public Permissao findPermissao(String pUrl) {
+		return entityManager
+				.createQuery("SELECT p FROM Permissao p WHERE p.url = :urlPermissao", Permissao.class)
+				.setParameter("urlPermissao", pUrl)
+				.getSingleResult();
 	}
 	
 }

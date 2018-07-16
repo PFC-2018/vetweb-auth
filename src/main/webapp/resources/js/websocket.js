@@ -6,10 +6,6 @@ endpoint.onopen = function () {
 
 endpoint.onmessage = function (message) {
 	var mappings = JSON.parse(message.data);
-	var quantidadeUrls = mappings.length;
-	for (var i = 0; i < quantidadeUrls; i++) {
-		console.log(mappings[i]);
-	}
 }
 
 endpoint.onerror = function (error) {

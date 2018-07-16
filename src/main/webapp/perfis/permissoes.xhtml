@@ -8,7 +8,10 @@
 
 	<f:metadata>
 		<f:viewParam value="#{perfilDetalheBean.id}" name="id"/>
+		<f:viewParam value="#{permissoesBean.idPerfi}" name="id"/>
+		
 		<f:viewAction action="#{perfilDetalheBean.findById()}" />
+		<f:viewAction action="#{permissoesBean.findPerfil()}" />
 	</f:metadata>
 
 	<ui:composition 
@@ -19,15 +22,19 @@
 		
 		    <p:layoutUnit position="center">
 		    
-		    	<p:fieldset legend="Permissões #{perfilDetalheBean.perfil.descricao}" toggleable="true" toggleSpeed="500">
+		    	<p:fieldset legend="Permissões #{permissoesBean.perfil.descricao}" toggleable="true" toggleSpeed="500">
+		    	
 				    <p:pickList id="listPerfil" value="#{permissoesBean.dualListPermissao}" var="perfil" effect="bounce"
 				                itemValue="#{perfil}" itemLabel="#{perfil}" showCheckbox="true" responsive="true"
-				                filterMatchMode="contains">
+				                filterMatchMode="contains" converter="converterPermissao">
 				                
 					    <f:facet name="sourceCaption">Disponíveis</f:facet>
 					    <f:facet name="targetCaption">Atribuídas</f:facet>
+					    
+					    <p:ajax event="transfer" listener="#{permissoesBean.onTransfer}" update="" />
 	    			                
 			    	</p:pickList>
+				
 		    	</p:fieldset>
 		    	
 		    </p:layoutUnit>
