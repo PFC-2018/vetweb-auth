@@ -1,7 +1,7 @@
 package com.vetweb.auth.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -33,12 +33,12 @@ public class Usuario {
 	@ManyToMany(fetch = FetchType.LAZY)
 	@XmlElement(name = "perfil")
 	@XmlElementWrapper(name = "perfis")
-	private List<Perfil> perfis = new ArrayList<>();
+	private Set<Perfil> perfis = new HashSet<>();
 
 	public Usuario() {
 	}
 	
-	public Usuario(String username, String password, List<Perfil> perfis) {
+	public Usuario(String username, String password, Set<Perfil> perfis) {
 		this.username = username;
 		this.password = password;
 		this.perfis = perfis;
@@ -60,11 +60,11 @@ public class Usuario {
 		this.username = username;
 	}
 
-	public List<Perfil> getPerfis() {
+	public Set<Perfil> getPerfis() {
 		return perfis;
 	}
 
-	public void setPerfis(List<Perfil> perfis) {
+	public void setPerfis(Set<Perfil> perfis) {
 		this.perfis = perfis;
 	}
 

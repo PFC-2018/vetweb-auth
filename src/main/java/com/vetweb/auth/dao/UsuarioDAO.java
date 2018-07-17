@@ -26,13 +26,24 @@ public class UsuarioDAO {
 	public List<Usuario> all() {
 		return entityManager
 				.createQuery("SELECT DISTINCT(u) FROM Usuario u "
-						+ "JOIN FETCH u.perfis p "
-						+ "JOIN FETCH p.permissoes perm", Usuario.class)
+						+ " JOIN FETCH u.perfis p "
+						+ " JOIN FETCH p.permissoes perm", Usuario.class)
 				.getResultList();
 	}
 
 	public Usuario findById(String id) {
 		return entityManager.find(Usuario.class, id);
+	}
+	
+	public Usuario findByUsername(String username) {
+		return entityManager
+				.createQuery("SELECT u FROM Usuario u "
+						+ " JOIN FETCH u.perfis p "
+						+ " JOIN FETCH p.permissoes perm "
+						+ " WHERE u.username = :user", Usuario.class)
+				.setParameter("user", username)
+				.getSingleResult();
+							
 	}
 	
 }

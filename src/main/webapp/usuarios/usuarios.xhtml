@@ -35,7 +35,7 @@
 					</p:column>
 					<p:column headerText="Perfis">
 			            <f:facet name="header">Perfis</f:facet>
-							<ui:repeat var="perfil" value="#{usuario.perfis}">
+							<ui:repeat var="perfil" value="#{usuario.perfis.toArray()}">
 								#{perfil.descricao} <br/>
 							</ui:repeat>
 					</p:column>

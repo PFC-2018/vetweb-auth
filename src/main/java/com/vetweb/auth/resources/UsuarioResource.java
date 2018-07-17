@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.websocket.server.PathParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -28,5 +29,11 @@ public class UsuarioResource {
 	@Wrapped(element = "usuarios")
 	public List<Usuario> findAll() {
 		return usuarioDAO.all();
+	}
+	
+	@GET
+	@Path("{username}")
+	public Usuario loadByUsername(@PathParam("username") String username) {
+		return usuarioDAO.findByUsername(username);
 	}
 }
