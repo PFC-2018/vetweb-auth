@@ -25,7 +25,9 @@ public class UsuarioDAO {
 	
 	public List<Usuario> all() {
 		return entityManager
-				.createQuery("SELECT DISTINCT(u) FROM Usuario u JOIN FETCH u.perfis p", Usuario.class)
+				.createQuery("SELECT DISTINCT(u) FROM Usuario u "
+						+ "JOIN FETCH u.perfis p "
+						+ "JOIN FETCH p.permissoes perm", Usuario.class)
 				.getResultList();
 	}
 

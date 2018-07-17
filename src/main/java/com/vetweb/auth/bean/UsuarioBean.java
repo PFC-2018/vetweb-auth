@@ -14,6 +14,7 @@ import javax.servlet.http.Part;
 import javax.transaction.Transactional;
 
 import com.vetweb.auth.dao.UsuarioDAO;
+import com.vetweb.auth.endpoint.AuthEndpoint;
 import com.vetweb.auth.model.Usuario;
 
 @Model
@@ -21,6 +22,9 @@ public class UsuarioBean {
 	
 	@Inject
 	private UsuarioDAO usuarioDAO;
+	
+	@Inject
+	private AuthEndpoint endpoint;
 	
 	private Part fotoUsuario;
 	
@@ -49,6 +53,7 @@ public class UsuarioBean {
 		usuario.setCaminhoFoto(caminhoFoto);
 		usuarioDAO.save(usuario);
 		jmsProducer.send(destination, usuario.getEmail());
+		endpoint.sendNewUserNotification(usuario);
 		context
 			.addMessage(null, new FacesMessage("USUÁRIO INCLUÍDO COM SUCESSO	"));
 		return "/usuarios/usuarios?faces-redirect=true";
