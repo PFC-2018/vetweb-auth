@@ -1,14 +1,23 @@
 package com.vetweb.auth.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlTransient;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Permissao implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -22,6 +31,11 @@ public class Permissao implements Serializable {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@ManyToMany(mappedBy = "permissoes")
+	@JsonIgnore
+	@XmlTransient
+	private Set<Perfil> perfis = new HashSet<>();
 	
 	@Column(unique = true)
 	private String url;
@@ -42,6 +56,14 @@ public class Permissao implements Serializable {
 		this.url = url;
 	}
 	
+	public Set<Perfil> getPerfis() {
+		return perfis;
+	}
+
+	public void setPerfis(Set<Perfil> perfis) {
+		this.perfis = perfis;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

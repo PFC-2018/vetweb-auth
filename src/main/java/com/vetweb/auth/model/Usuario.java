@@ -13,6 +13,10 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.vetweb.auth.configuration.PasswordGenerator;
+
 @Entity
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -33,6 +37,8 @@ public class Usuario {
 	@ManyToMany(fetch = FetchType.LAZY)
 	@XmlElement(name = "perfil")
 	@XmlElementWrapper(name = "perfis")
+	@JsonManagedReference
+	@JsonProperty("perfis")
 	private Set<Perfil> perfis = new HashSet<>();
 
 	public Usuario() {
@@ -40,7 +46,7 @@ public class Usuario {
 	
 	public Usuario(String username, String password, Set<Perfil> perfis) {
 		this.username = username;
-		this.password = password;
+		this.password = PasswordGenerator.genPassword(password);
 		this.perfis = perfis;
 	}
 
@@ -49,7 +55,7 @@ public class Usuario {
 	}
 	
 	public void setPassword(String password) {
-		this.password = password;
+		this.password = PasswordGenerator.genPassword(password);
 	}
 
 	public String getUsername() {

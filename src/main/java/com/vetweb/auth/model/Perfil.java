@@ -12,6 +12,11 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @XmlRootElement
@@ -27,13 +32,20 @@ public class Perfil {
 	@ManyToMany(fetch = FetchType.LAZY)
 	@XmlElement(name = "permissao")
 	@XmlElementWrapper(name = "permissoes")
+	@JsonManagedReference
+	@JsonProperty("permissoes")
 	private Set<Permissao> permissoes = new HashSet<>();
+	
+	@ManyToMany(mappedBy = "perfis")
+	@JsonBackReference
+	@XmlTransient
+	private Set<Usuario> usuarios = new HashSet<>();
 	
 	public Perfil() {
 	}
 	
 	public Perfil(String descricao) {
-		this.descricao = descricao;
+		this.descricao = "ROLE_".concat(descricao.toUpperCase());
 	}
 
 	public String getDescricao() {
@@ -41,7 +53,7 @@ public class Perfil {
 	}
 
 	public void setDescricao(String perfil) {
-		this.descricao = perfil;
+		this.descricao = "ROLE_".concat(perfil.toUpperCase());
 	}
 
 	public Set<Permissao> getPermissoes() {
@@ -50,6 +62,14 @@ public class Perfil {
 
 	public void setPermissoes(Set<Permissao> permissoes) {
 		this.permissoes = permissoes;
+	}
+
+	public Set<Usuario> getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(Set<Usuario> usuarios) {
+		this.usuarios = usuarios;
 	}
 
 	@Override

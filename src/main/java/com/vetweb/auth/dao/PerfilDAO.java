@@ -25,7 +25,7 @@ public class PerfilDAO {
 				entityManager.persist(permissao);
 	}
 
-	private List<Permissao> allPermissoes() {
+	public List<Permissao> allPermissoes() {
 		return entityManager
 				.createQuery("SELECT p FROM Permissao p", Permissao.class)
 				.getResultList();
@@ -37,7 +37,7 @@ public class PerfilDAO {
 	
 	public List<Perfil> all() {
 		return entityManager
-				.createQuery("SELECT p FROM Perfil p", Perfil.class)
+				.createQuery("SELECT p FROM Perfil p LEFT JOIN FETCH p.permissoes perm", Perfil.class)
 				.getResultList();
 	}
 
@@ -51,6 +51,12 @@ public class PerfilDAO {
 				.createQuery("SELECT p FROM Permissao p WHERE p.url = :urlPermissao", Permissao.class)
 				.setParameter("urlPermissao", pUrl)
 				.getSingleResult();
+	}
+	
+	public List<Permissao> permissions() {
+		return entityManager
+				.createQuery("SELECT p FROM Permissao p JOIN FETCH p.perfis", Permissao.class)
+				.getResultList();
 	}
 	
 }

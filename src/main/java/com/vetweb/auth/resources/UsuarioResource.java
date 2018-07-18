@@ -25,15 +25,13 @@ public class UsuarioResource {
 	
 	@GET
 	@Path("all")
-	@Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 	@Wrapped(element = "usuarios")
 	public List<Usuario> findAll() {
-		return usuarioDAO.all();
+		return usuarioDAO.allLeft();
 	}
 	
 	@GET
 	@Path("{username}")
-	@Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 	public Usuario loadByUsername(@PathParam("username") String username) {
 		return usuarioDAO.findByUsername(username);
 	}
