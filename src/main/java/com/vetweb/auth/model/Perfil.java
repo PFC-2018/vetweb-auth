@@ -45,7 +45,7 @@ public class Perfil {
 	}
 	
 	public Perfil(String descricao) {
-		this.descricao = "ROLE_".concat(descricao.toUpperCase());
+		this.descricao = descricao;
 	}
 
 	public String getDescricao() {
@@ -53,7 +53,7 @@ public class Perfil {
 	}
 
 	public void setDescricao(String perfil) {
-		this.descricao = "ROLE_".concat(perfil.toUpperCase());
+		this.descricao = perfil;
 	}
 
 	public Set<Permissao> getPermissoes() {
