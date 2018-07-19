@@ -37,7 +37,7 @@ public class PerfilDAO {
 	
 	public List<Perfil> all() {
 		return entityManager
-				.createQuery("SELECT p FROM Perfil p LEFT JOIN FETCH p.permissoes perm", Perfil.class)
+				.createQuery("SELECT DISTINCT (p) FROM Perfil p LEFT JOIN FETCH p.permissoes perm", Perfil.class)
 				.getResultList();
 	}
 
