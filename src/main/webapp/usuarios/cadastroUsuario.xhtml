@@ -8,6 +8,11 @@
 	xmlns:jsf="http://xmlns.jcp.org/jsf"
     xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"	>
 
+	<f:metadata>
+		<f:viewParam value="#{usuarioBean.id}" name="id"/>
+		<f:viewAction action="#{usuarioBean.findById()}" />
+	</f:metadata>
+
 	<ui:composition
 		xmlns:p="http://primefaces.org/ui"
 		template="/template/layout.xhtml">
@@ -18,7 +23,7 @@
 				<h:form enctype="multipart/form-data">
 					<p:fieldset legend="Cadastro Usuário" toggleable="true" toggleSpeed="500">
 					
-						<h:panelGrid columns="2" cellpadding="5">
+						<h:panelGrid columns="2" cellpadding="5" rendered="#{empty usuarioBean.id}">
 							<h:outputLabel value="Foto"/>
 							<h:inputFile value="#{usuarioBean.fotoUsuario}"/>
 						</h:panelGrid>
@@ -33,7 +38,7 @@
 							<h:inputText value="#{usuarioBean.usuario.email}" pt:placeholder="email@email"/>
 						</h:panelGrid>
 						
-						<h:panelGrid columns="2" cellpadding="5">
+						<h:panelGrid columns="2" cellpadding="5" rendered="#{empty usuarioBean.id}">
 							<h:outputLabel value="Senha"/>
 							<h:inputSecret value="#{usuarioBean.usuario.password}" pt:placeholder="Password"/>
 						</h:panelGrid>

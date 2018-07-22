@@ -18,7 +18,7 @@
 		    	
 				<p:dataTable var="usuario" value="#{usuarioListBean.usuarios}">
 					<p:column headerText="Nome">
-						<a href="#{request.contextPath}/usuarios/detalheUsuario.xhtml?id=#{usuario.username}">#{usuario.username}</a>
+						<a href="#{request.contextPath}/usuarios/cadastroUsuario.xhtml?id=#{usuario.username}">#{usuario.username}</a>
 					</p:column>
 					<p:column headerText="Email">
 			            <f:facet name="header">Email</f:facet>
@@ -30,8 +30,10 @@
 					</p:column>
 					<p:column headerText="Foto">
 			            <f:facet name="header">Foto</f:facet>
-						<img src="#{request.contextPath}/arquivo/#{usuario.caminhoFoto}"
-							height="30%" alt="#{usuario.caminhoFoto}" />            
+			            <a href="#{request.contextPath}/usuarios/detalheUsuario.xhtml?id=#{usuario.username}">
+							<img src="#{request.contextPath}/arquivo/#{usuario.caminhoFoto}"
+								height="30%" alt="#{usuario.caminhoFoto}" />            
+			            </a>
 					</p:column>
 					<p:column headerText="Perfis">
 			            <f:facet name="header">Perfis</f:facet>

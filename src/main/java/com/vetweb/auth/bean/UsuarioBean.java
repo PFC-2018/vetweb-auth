@@ -1,7 +1,7 @@
 package com.vetweb.auth.bean;
 
-import java.io.IOException;
 
+import java.io.IOException;
 import javax.annotation.Resource;
 import javax.enterprise.inject.Model;
 import javax.faces.application.FacesMessage;
@@ -23,6 +23,8 @@ public class UsuarioBean {
 	@Inject
 	private UsuarioDAO usuarioDAO;
 	
+	private String id;
+	
 	@Inject
 	private AuthEndpoint endpoint;
 	
@@ -42,6 +44,15 @@ public class UsuarioBean {
 	@Transactional
 	public String save() {
 		messageFlash();
+		if (id != null) {
+			Usuario oldRecord = usuarioDAO.findById(id);
+			usuario.setCaminhoFoto(oldRecord.getCaminhoFoto());
+			usuario.setPassword(oldRecord.getPassword());
+			usuarioDAO.update(usuario);
+			context
+				.addMessage(null, new FacesMessage("USUÁRIO ATUALIZADO COM SUCESSO	"));
+			return "/usuarios/usuarios?faces-redirect=true";
+		}
 		JMSProducer jmsProducer = jmsContext.createProducer();
 		String caminhoFoto = System.getProperty("jboss.home.dir") + "/vetwebFiles/imagens/usuarios/" + fotoUsuario.getSubmittedFileName();
 		try {
@@ -58,6 +69,12 @@ public class UsuarioBean {
 			.addMessage(null, new FacesMessage("USUÁRIO INCLUÍDO COM SUCESSO	"));
 		return "/usuarios/usuarios?faces-redirect=true";
 	}
+	
+	public void findById() {
+		if (id != null) {
+			this.usuario = usuarioDAO.findById(id);
+		}
+	}	
 
 	private void messageFlash() {
 		context
@@ -72,6 +89,14 @@ public class UsuarioBean {
 	
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public Part getFotoUsuario() {
