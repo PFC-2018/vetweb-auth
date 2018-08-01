@@ -53,7 +53,7 @@ public class Perfil {
 	}
 
 	public void setDescricao(String perfil) {
-		this.descricao = perfil;
+		this.descricao = perfil.toUpperCase();
 	}
 
 	public Set<Permissao> getPermissoes() {

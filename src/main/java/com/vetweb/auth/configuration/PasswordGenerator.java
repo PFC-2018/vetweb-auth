@@ -1,10 +1,8 @@
 package com.vetweb.auth.configuration;
 
-import java.util.Base64;
+import java.security.MessageDigest;
 
-//import java.security.MessageDigest;
-
-//import org.jboss.security.Base64Encoder;
+import javax.xml.bind.DatatypeConverter;
 
 public class PasswordGenerator {
 	
@@ -14,8 +12,9 @@ public class PasswordGenerator {
 	
 	public static String genPassword(String password) {
 		try {
-//			byte[] digest = MessageDigest.getInstance("sha-256").digest(password.getBytes());
-			return new String(Base64.getEncoder().encode(password.getBytes()));
+			MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+			messageDigest.update(password.getBytes());
+			return DatatypeConverter.printHexBinary(messageDigest.digest()).toLowerCase();
 		} catch (Exception exception) {
 			throw new RuntimeException(exception);
 		}
