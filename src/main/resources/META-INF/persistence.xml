@@ -7,7 +7,7 @@
     
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     
-    <jta-data-source>java:jboss/datasources/authds</jta-data-source>
+    <jta-data-source>java:jboss/datasources/vetwebds</jta-data-source>
     
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     
