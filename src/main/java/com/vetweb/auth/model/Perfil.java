@@ -6,7 +6,9 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -19,6 +21,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
+@Table(name = "tbl_perfil")
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Perfil {
@@ -34,6 +37,7 @@ public class Perfil {
 	@XmlElementWrapper(name = "permissoes")
 	@JsonManagedReference
 	@JsonProperty("permissoes")
+	@JoinTable(name = "tbl_perfil_permissoes")
 	private Set<Permissao> permissoes = new HashSet<>();
 	
 	@ManyToMany(mappedBy = "perfis")

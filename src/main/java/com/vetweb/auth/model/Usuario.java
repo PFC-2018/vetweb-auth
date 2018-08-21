@@ -6,7 +6,9 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -18,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.vetweb.auth.configuration.PasswordGenerator;
 
 @Entity
+@Table(name = "tbl_usuario")
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Usuario {
@@ -39,6 +42,7 @@ public class Usuario {
 	@XmlElementWrapper(name = "perfis")
 	@JsonManagedReference
 	@JsonProperty("perfis")
+	@JoinTable(name = "tbl_usuario_perfis")
 	private Set<Perfil> perfis = new HashSet<>();
 
 	public Usuario() {
