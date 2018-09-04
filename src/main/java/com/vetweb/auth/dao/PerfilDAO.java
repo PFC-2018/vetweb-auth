@@ -23,6 +23,8 @@ public class PerfilDAO {
 	public void savePermissao(Permissao permissao) {
 		if (permissao.getId() == null && !allPermissoes().contains(permissao))
 				entityManager.persist(permissao);
+		else 
+			entityManager.merge(permissao);
 	}
 
 	public List<Permissao> allPermissoes() {

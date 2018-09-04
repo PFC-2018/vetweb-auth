@@ -35,9 +35,7 @@ public class IntegrationClient {
 			
 			permissoes = new ObjectMapper().readValue(response.readEntity(String.class), new TypeReference<List<Permissao>>() {	});
 			permissoes.forEach(p -> {
-				if (p.getId() == null) {
-					perfilDAO.savePermissao(p);
-				}
+				perfilDAO.savePermissao(p);
 			});
 			
 		} catch(Exception exception) {
