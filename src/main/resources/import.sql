@@ -23,8 +23,8 @@ insert into tbl_perfil_permissoes (perfis_descricao, permissoes_id) values ('ADM
 insert into tbl_perfil_permissoes (perfis_descricao, permissoes_id) values ('ADMIN', 4);
 insert into tbl_perfil_permissoes (perfis_descricao, permissoes_id) values ('ADMIN', 5);
 
-insert into tbl_usuario (username, email, password) values ('vetweb', 'renan.rodrigues@metasix.com.br', '8idxMVxgdswZlsuLyr9Skw==');
-insert into tbl_usuario (username, email, password) values ('recepcao', 'renanfr1047@gmail.com', 'zEjsMlsw93bJOg6XHN0k/Q==');
+insert into tbl_usuario (username, email, password) values ('vetweb', 'tecnologiaamr@gmail.com', '8idxMVxgdswZlsuLyr9Skw==');
+insert into tbl_usuario (username, email, password) values ('recepcao', 'recepcao@vetweb.com', 'zEjsMlsw93bJOg6XHN0k/Q==');
 
 insert into tbl_usuario_perfis (usuarios_username, perfis_descricao) values ('vetweb', 'veterinario');
 insert into tbl_usuario_perfis (usuarios_username, perfis_descricao) values ('vetweb', 'ADMIN');
