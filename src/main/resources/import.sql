@@ -9,6 +9,7 @@ insert into tbl_permissao (id, url) values (3, '/prontuario/**');
 insert into tbl_permissao (id, url) values (4, '/animais/**');
 insert into tbl_permissao (id, url) values (5, '/config/**');
 insert into tbl_permissao (id, url) values (6, '/integration/mappings');
+insert into tbl_permissao (id, url) values (7, '/agendamento/**');
 
 insert into tbl_perfil_permissoes (perfis_descricao, permissoes_id) values ('recepcao', 1);
 insert into tbl_perfil_permissoes (perfis_descricao, permissoes_id) values ('recepcao', 4);
